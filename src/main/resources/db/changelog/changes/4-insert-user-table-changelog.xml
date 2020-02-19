@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<property name="now" value="now()" dbms="h2, mysql" />
+
+	<changeSet author="Hadi" id="4.0.local" context="local">
+		<preConditions>
+			<dbms type="h2" />
+		</preConditions>
+		<insert tableName="user">
+			<column name="name" value="David L." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="1" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Martha L." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="2" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Joseph L." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="3" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Kevin L." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="4" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Douglas L." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="5" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Monica L." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="6" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Jesslyn L." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="7" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Bob L." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="8" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Thor L." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="9" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Peter L." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="10" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Sarah L." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="11" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Kay L." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="12" />
+		</insert>
+	</changeSet>
+
+	<changeSet author="Hadi" id="4.0.server" context="server">
+		<preConditions>
+			<dbms type="mysql" />
+		</preConditions>
+		<insert tableName="user">
+			<column name="name" value="David S." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="1" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Martha S." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="2" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Joseph S." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="3" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Kevin S." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="4" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Douglas S." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="5" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Monica S." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="6" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Jesslyn S." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="7" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Bob S." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="8" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Thor S." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="9" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Peter S." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="10" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Sarah S." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="11" />
+		</insert>
+		<insert tableName="user">
+			<column name="name" value="Kay S." />
+			<column name="date" valueDate="${now}" />
+			<column name="type" value="12" />
+		</insert>
+	</changeSet>
+</databaseChangeLog>

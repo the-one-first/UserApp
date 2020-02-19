@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="Hadi" id="2.0.local" context="local">
+		<preConditions>
+			<dbms type="h2" />
+		</preConditions>
+		<insert tableName="user_type">
+			<column name="name" value="Clerk Local" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Manager Local" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Sales Local" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Developer Local" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Quality Assurance Local" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Trainer Local" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="CEO Local" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="CTO Local" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="CFO Local" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Admin Local" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Finance Local" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Scientist Local" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Senior Developer Local" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Human Resource Local" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Product Owner Local" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Automation Tester Local" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Back Office Local" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Front End Developer Local" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Back End Developer Local" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Full Stack Developer Local" />
+		</insert>
+	</changeSet>
+
+	<changeSet author="Hadi" id="2.0.server" context="server">
+		<preConditions>
+			<dbms type="mysql" />
+		</preConditions>
+		<insert tableName="user_type">
+			<column name="name" value="Clerk Server" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Manager Server" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Sales Server" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Developer Server" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Quality Assurance Server" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Trainer Server" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="CEO Server" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="CTO Server" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="CFO Server" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Admin Server" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Finance Server" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Scientist Server" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Senior Developer Server" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Human Resource Server" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Product Owner Server" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Automation Tester Server" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Back Office Server" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Front End Developer Server" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Back End Developer Server" />
+		</insert>
+		<insert tableName="user_type">
+			<column name="name" value="Full Stack Developer Server" />
+		</insert>
+	</changeSet>
+</databaseChangeLog>
+		
