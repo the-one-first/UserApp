@@ -3,6 +3,7 @@ package com.wirecard.userapp.usertype.service.impl;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -20,6 +21,7 @@ import com.wirecard.userapp.response.error.CodeDescError;
 import com.wirecard.userapp.response.error.ResponseError;
 import com.wirecard.userapp.response.paging.Paging;
 import com.wirecard.userapp.response.sorting.Sorting;
+import com.wirecard.userapp.response.usertype.ResponseUserTypeDelete;
 import com.wirecard.userapp.response.usertype.ResponseUserTypeInsertUpdate;
 import com.wirecard.userapp.response.usertype.ResponseUserTypeView;
 import com.wirecard.userapp.usertype.entity.UserType;
@@ -100,12 +102,63 @@ public class UserTypeServiceImpl implements UserTypeService {
 
     }
 
+    @Transactional(isolation = Isolation.READ_COMMITTED, timeout = 10)
     public ResponseEntity<DefaultResponse> updateExistingUserTypeById(Long id, UserType userType) {
-        return null;
+
+        try {
+
+            Optional<UserType> userTypeExist = userTypeRepository.findById(id);
+
+            if (userTypeExist.isPresent()) {
+
+                userTypeExist.get().setTypeName(userType.getTypeName());
+
+                userTypeRepository.save(userTypeExist.get());
+
+                return new ResponseEntity<>(
+                        new ResponseUserTypeInsertUpdate(ResponseEnum.SUCCESS_STATUS.getCode(), userType.getTypeName()),
+                        HttpStatus.OK);
+
+            } else {
+
+                return new ResponseEntity<>(
+                        new ResponseError(ResponseEnum.ERROR_STATUS.getCode(),
+                                Collections
+                                        .singletonList(new CodeDescError(ResponseEnum.FAILED_UPDATE_NOT_FOUND.getCode(),
+                                                ResponseEnum.FAILED_UPDATE_NOT_FOUND.getDesc()))),
+                        HttpStatus.NOT_FOUND);
+
+            }
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(new ResponseError(ResponseEnum.ERROR_STATUS.getCode(),
+                    Collections.singletonList(new CodeDescError(ResponseEnum.FAILED_UPDATE.getCode(),
+                            ResponseEnum.FAILED_UPDATE.getDesc()))),
+                    HttpStatus.NOT_FOUND);
+
+        }
+
     }
 
+    @Transactional(timeout = 10)
     public ResponseEntity<DefaultResponse> deleteExistingUserTypeById(Long id) {
-        return null;
+
+        try {
+
+            userTypeRepository.deleteById(id);
+            return new ResponseEntity<>(new ResponseUserTypeDelete(ResponseEnum.SUCCESS_STATUS.getCode(), id),
+                    HttpStatus.ACCEPTED);
+
+        } catch (Exception e) {
+
+            return new ResponseEntity<>(new ResponseError(ResponseEnum.ERROR_STATUS.getCode(),
+                    Collections.singletonList(new CodeDescError(ResponseEnum.FAILED_DELETE.getCode(),
+                            ResponseEnum.FAILED_DELETE.getDesc()))),
+                    HttpStatus.NOT_FOUND);
+
+        }
+
     }
 
     private boolean isValidToInsertUserTypeName(UserType userType) {
