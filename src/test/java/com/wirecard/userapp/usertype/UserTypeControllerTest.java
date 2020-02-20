@@ -114,5 +114,71 @@ class UserTypeControllerTest {
                 .andExpect(jsonPath("$.details[*].code").value(ErrorEnum.ERR_USER_TYPE_NM_UNIQUE.getCode()))
                 .andExpect(jsonPath("$.details[*].desc").value(ErrorEnum.ERR_USER_TYPE_NM_UNIQUE.getDesc()));
     }
+    
+    /*
+     * Testing : PUT /usertype/1
+     * Expectation : Success to update existing user type data with ID = 1
+     */
+    @Test
+    public void updateExistingUserTypeTest() throws Exception {
+        mockMvc.perform( MockMvcRequestBuilders
+                .put("/usertype/{id}",1)
+                .content(Utils.asJsonString(new UserTypeDTO(1L, "Junior Manager Local")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status").value(ResponseEnum.SUCCESS_STATUS.getCode()))
+                .andExpect(jsonPath("$.userTypeName").exists())
+                .andExpect(jsonPath("$.userTypeName").value("Junior Manager Local"));
+    }
+    
+    /*
+     * Testing : PUT /usertype/87
+     * Expectation : Failed to update existing user type data with ID = 87
+     */
+    @Test
+    public void updateExistingUserTypeWithInvalidIdTest() throws Exception {
+        mockMvc.perform( MockMvcRequestBuilders
+                .put("/usertype/{id}",87)
+                .content(Utils.asJsonString(new UserTypeDTO(87L, "Middle Manager Local")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.status").value(ResponseEnum.ERROR_STATUS.getCode()))
+                .andExpect(jsonPath("$.details").exists())
+                .andExpect(jsonPath("$.details").isArray())
+                .andExpect(jsonPath("$.details[*].code").value(ResponseEnum.FAILED_UPDATE_NOT_FOUND.getCode()))
+                .andExpect(jsonPath("$.details[*].desc").value(ResponseEnum.FAILED_UPDATE_NOT_FOUND.getDesc()));
+    }
+    
+    /*
+     * Testing : DELETE /usertype/17
+     * Expectation : Success to delete existing user type data with ID = 17
+     */
+    @Test
+    public void deleteExistingUserTypeTest() throws Exception {
+    	mockMvc.perform( MockMvcRequestBuilders
+                .delete("/usertype/{id}",17))
+                .andExpect(status().isAccepted())
+                .andExpect(jsonPath("$.status").value(ResponseEnum.SUCCESS_STATUS.getCode()))
+                .andExpect(jsonPath("$.userTypeId").exists())
+                .andExpect(jsonPath("$.userTypeId").value(17));
+    }
+    
+    /*
+     * Testing : DELETE /usertype/2
+     * Expectation : Failed to delete existing user type data with ID = 2 because of data integration exception
+     */
+    @Test
+    public void deleteExistingUserTypeWithInvalidIdTest() throws Exception {
+    	mockMvc.perform( MockMvcRequestBuilders
+                .delete("/usertype/{id}",2))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.status").value(ResponseEnum.ERROR_STATUS.getCode()))
+                .andExpect(jsonPath("$.details").exists())
+                .andExpect(jsonPath("$.details").isArray())
+                .andExpect(jsonPath("$.details[*].code").value(ErrorEnum.ERR_DATA_INTEGRATION.getCode()))
+                .andExpect(jsonPath("$.details[*].desc").value(ErrorEnum.ERR_DATA_INTEGRATION.getDesc()));
+    }
 
 }
