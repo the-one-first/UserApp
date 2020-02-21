@@ -14,7 +14,7 @@
 			<column name="name" type="VARCHAR(100)">
 				<constraints nullable="false" />
 			</column>
-			<column name="date" type="TIMESTAMP">
+			<column name="date" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
 				<constraints nullable="false" />
 			</column>
 			<column name="type" type="INT(10)">

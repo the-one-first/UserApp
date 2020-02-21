@@ -31,10 +31,10 @@ import com.wirecard.userapp.user.service.UserService;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    OrikaMapperAutoConfig orikaMapperAutoConfig;
+    private OrikaMapperAutoConfig orikaMapperAutoConfig;
 
     @GetMapping("/user")
     public ResponseEntity<ResponseUserView> getUser(@RequestParam(value = "sort", required = false) String sort,

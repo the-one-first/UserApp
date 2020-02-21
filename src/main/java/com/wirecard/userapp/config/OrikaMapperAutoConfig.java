@@ -13,7 +13,7 @@ import com.wirecard.userapp.usertype.entity.UserType;
 public class OrikaMapperAutoConfig {
 
     @Autowired
-    ConverterDTOToBeanObject converterDTOToBeanObject;
+    private ConverterDTOToBeanObject converterDTOToBeanObject;
     
     public User getUserBeanFromUserDTO(UserDTO userDTO) {
         

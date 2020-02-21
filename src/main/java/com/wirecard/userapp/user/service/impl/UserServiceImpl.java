@@ -73,6 +73,9 @@ public class UserServiceImpl implements UserService {
 
             if (details.isEmpty()) {
 
+                if(user.getUserDate() == null) {
+                    user.setUserDate(new Date());
+                }
                 userRepository.save(user);
 
                 return new ResponseEntity<>(
