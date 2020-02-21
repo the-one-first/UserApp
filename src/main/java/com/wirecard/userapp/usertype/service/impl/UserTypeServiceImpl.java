@@ -70,10 +70,9 @@ public class UserTypeServiceImpl implements UserTypeService {
 
             boolean isValidUserTypeName = isValidToInsertUserTypeName(userType);
 
-            CodeDescError errorConstraintUserTypeNameUnique = new CodeDescError(
-                    ErrorEnum.ERR_USER_TYPE_NM_UNIQUE.getCode(), ErrorEnum.ERR_USER_TYPE_NM_UNIQUE.getDesc());
-
             if (!isValidUserTypeName) {
+                CodeDescError errorConstraintUserTypeNameUnique = new CodeDescError(
+                        ErrorEnum.ERR_USER_TYPE_NM_UNIQUE.getCode(), ErrorEnum.ERR_USER_TYPE_NM_UNIQUE.getDesc());
                 details.add(errorConstraintUserTypeNameUnique);
             }
 
@@ -90,12 +89,12 @@ public class UserTypeServiceImpl implements UserTypeService {
             return new ResponseEntity<>(new ResponseError(ResponseEnum.ERROR_STATUS.getCode(), details),
                     HttpStatus.CONFLICT);
 
-        } catch (Exception ex) {
+        } catch (Exception e) {
 
             return new ResponseEntity<>(
                     new ResponseError(ResponseEnum.ERROR_STATUS.getCode(),
                             Collections.singletonList(new CodeDescError(ResponseEnum.FAILED_INSERT.getCode(),
-                                    ResponseEnum.FAILED_INSERT.getDesc() + " because " + ex.getMessage()))),
+                                    ResponseEnum.FAILED_INSERT.getDesc() + " because " + e.getMessage()))),
                     HttpStatus.NOT_FOUND);
 
         }

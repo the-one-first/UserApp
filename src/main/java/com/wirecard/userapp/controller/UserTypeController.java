@@ -28,10 +28,10 @@ import com.wirecard.userapp.usertype.service.UserTypeService;
 public class UserTypeController {
 
 	@Autowired
-	private UserTypeService userTypeService;
+	UserTypeService userTypeService;
 
 	@Autowired
-	private OrikaMapperAutoConfig orikaMapperAutoConfig;
+	OrikaMapperAutoConfig orikaMapperAutoConfig;
 
 	@GetMapping("/usertype")
 	public ResponseEntity<ResponseUserTypeView> getUserType(@RequestParam(value = "sort", required = false) String sort,

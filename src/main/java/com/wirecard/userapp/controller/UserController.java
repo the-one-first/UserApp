@@ -43,7 +43,7 @@ public class UserController {
             @RequestParam(value = "id", required = false) Long id,
             @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "userDate", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date userDate,
-            @RequestParam(value = "typeId", required = false) Long userType,
+            @RequestParam(value = "userType", required = false) Long userType,
             @PageableDefault(value = 5, page = 0) Pageable pageable) {
 
         return userService.getUserList(pageable, id, name, userDate, userType);
