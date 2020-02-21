@@ -4,7 +4,8 @@ public enum ConfigEnum {
 
     CONTROLLER_PACKAGE("com.wirecard.userapp.controller"),
     DESCENDING("DESC"),
-    DATE_FORMAT_COMPARE("yyyy-MM-dd"),
+    DATE_FORMAT_MYSQL_COMPARE("yyyy-MM-dd"),
+    DATE_FORMAT_H2_COMPARE("YYYY-MM-DD"),
     LOCAL_ENV("local"),
     SERVER_ENV("server");
     

@@ -60,13 +60,15 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
             predicates.add(cb.like(cb.lower(root.get("userName")), "%" + name.toLowerCase() + "%"));
         }
         if (date != null) {
-            SimpleDateFormat sdf = new SimpleDateFormat(ConfigEnum.DATE_FORMAT_COMPARE.getDesc());
+            
             if (ConfigEnum.LOCAL_ENV.getDesc().equals(activeEnv)) {
+                SimpleDateFormat sdf = new SimpleDateFormat(ConfigEnum.DATE_FORMAT_H2_COMPARE.getDesc());
                 predicates.add(cb.equal(
                         cb.function("FORMATDATETIME", Date.class, root.get("userDate"), cb.literal("YYYY-MM-DD")),
                         sdf.format(date)));
             }
             if (ConfigEnum.SERVER_ENV.getDesc().equals(activeEnv)) {
+                SimpleDateFormat sdf = new SimpleDateFormat(ConfigEnum.DATE_FORMAT_MYSQL_COMPARE.getDesc());
                 predicates.add(
                         cb.equal(cb.function("DATE_FORMAT", Date.class, root.get("userDate"), cb.literal("%Y-%m-%d")),
                                 sdf.format(date)));
@@ -80,5 +82,5 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
         return predicates;
 
     }
-
+    
 }
