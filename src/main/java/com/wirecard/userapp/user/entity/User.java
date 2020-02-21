@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.wirecard.userapp.usertype.entity.UserType;
 
 @Entity
@@ -23,10 +25,11 @@ public class User {
     private String userName;
     
     @Column(name = "date")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date userDate;
     
     @ManyToOne
-    @JoinColumn(name = "userTypeId", referencedColumnName = "id")
+    @JoinColumn(name = "type", referencedColumnName = "id")
     private UserType userType;
 
     public Long getId() {
@@ -37,11 +40,11 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
+    public String getUserName() {
         return userName;
     }
 
-    public void setName(String userName) {
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 
