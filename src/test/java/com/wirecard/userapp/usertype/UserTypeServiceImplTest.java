@@ -228,7 +228,7 @@ public class UserTypeServiceImplTest {
 
 	/*
 	 * Testing : Delete existing user type by invalid ID 
-	 * Expectation : Return Error and Status Code = 404 NOT_FOUND and typesRepository.deleteById was called 1 time
+	 * Expectation : Return Error and Status Code = 404 NOT_FOUND and userTypeRepository.deleteById was called 1 time
 	 */
 	@Test
 	public void deleteExistingUserTypeByInvalidIdTest() {
