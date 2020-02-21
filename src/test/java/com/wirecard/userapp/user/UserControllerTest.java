@@ -118,13 +118,13 @@ class UserControllerTest {
     }
     
     /*
-     * Testing : PUT /user/2
-     * Expectation : Success to update existing user data with ID = 2
+     * Testing : PUT /user/4
+     * Expectation : Success to update existing user data with ID = 4
      */
     @Test
     public void updateExistingUserTest() throws Exception {
         mockMvc.perform( MockMvcRequestBuilders
-                .put("/user/{id}",2)
+                .put("/user/{id}",4)
                 .content(Utils.asJsonString(new UserDTO(null, "Michael Owen", new Date(), 9L)))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
