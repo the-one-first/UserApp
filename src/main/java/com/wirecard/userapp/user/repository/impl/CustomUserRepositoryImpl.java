@@ -1,5 +1,6 @@
 package com.wirecard.userapp.user.repository.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,8 +12,10 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
 
+import com.wirecard.userapp.enumerator.ConfigEnum;
 import com.wirecard.userapp.user.entity.User;
 import com.wirecard.userapp.user.repository.CustomUserRepository;
 import com.wirecard.userapp.usertype.entity.UserType;
@@ -21,6 +24,9 @@ import com.wirecard.userapp.utils.SortingUtils;
 import liquibase.util.StringUtils;
 
 public class CustomUserRepositoryImpl implements CustomUserRepository {
+
+    @Value("${spring.profiles.active}")
+    private String activeEnv;
 
     private final EntityManager em;
 
@@ -54,7 +60,17 @@ public class CustomUserRepositoryImpl implements CustomUserRepository {
             predicates.add(cb.like(cb.lower(root.get("userName")), "%" + name.toLowerCase() + "%"));
         }
         if (date != null) {
-            predicates.add(cb.equal(root.<Date>get("userDate"), date));
+            SimpleDateFormat sdf = new SimpleDateFormat(ConfigEnum.DATE_FORMAT_COMPARE.getDesc());
+            if (ConfigEnum.LOCAL_ENV.getDesc().equals(activeEnv)) {
+                predicates.add(cb.equal(
+                        cb.function("FORMATDATETIME", Date.class, root.get("userDate"), cb.literal("YYYY-MM-DD")),
+                        sdf.format(date)));
+            }
+            if (ConfigEnum.SERVER_ENV.getDesc().equals(activeEnv)) {
+                predicates.add(
+                        cb.equal(cb.function("DATE_FORMAT", Date.class, root.get("userDate"), cb.literal("%Y-%m-%d")),
+                                sdf.format(date)));
+            }
         }
         if (userType != null) {
             Join<User, UserType> userTypeJoin = root.join("userType");
