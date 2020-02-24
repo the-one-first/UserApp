@@ -5,17 +5,17 @@ This is a user application that build using spring boot framework, spring valida
 ### Build the Application
 
 1. Open the project in Eclipse or Spring Tool Suite
-2. Right click on pom.xml and choose Run As, Run Configuration
-3. Right click on Maven Build, New Configuration
+2. Right click on build.gradle and choose Run As, Run Configuration
+3. Right click on Gradle Task, New Configuration
 4. Fill Name with UserApp
-5. Choose UserApp workspace by clicking Workspace button
-6. Fill Goals with clean install -X
+5. Choose UserApp workspace by clicking File System button
+6. Fill Gradle Tasks with clean in first row, and bootJar in second row
 7. Click Apply
 8. Click Run
 
 ### Run the Application
 
-1. Open command prompt in target folder
+1. Open command prompt in build/libs folder
 2. Run below command
 ```sh
     java -jar UserApp-0.0.1-SNAPSHOT.jar
