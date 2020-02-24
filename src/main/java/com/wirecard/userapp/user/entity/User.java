@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -31,6 +32,13 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "type", referencedColumnName = "id")
     private UserType userType;
+    
+    @PrePersist
+    public void preInsert() {
+        if(userDate == null) {
+            userDate = new Date();
+        }
+    }
 
     public Long getId() {
         return id;

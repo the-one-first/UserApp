@@ -63,9 +63,7 @@ public class UserServiceImpl implements UserService {
 
         try {
 
-            boolean isValidUserName = isValidToInsertUserName(user);
-
-            if (!isValidUserName) {
+            if (!isValidToInsertUserName(user)) {
                 CodeDescError errorConstraintUserNameUnique = new CodeDescError(ErrorEnum.ERR_USER_NM_UNIQUE.getCode(),
                         ErrorEnum.ERR_USER_NM_UNIQUE.getDesc());
                 details.add(errorConstraintUserNameUnique);
@@ -73,9 +71,6 @@ public class UserServiceImpl implements UserService {
 
             if (details.isEmpty()) {
 
-                if(user.getUserDate() == null) {
-                    user.setUserDate(new Date());
-                }
                 userRepository.save(user);
 
                 return new ResponseEntity<>(

@@ -68,9 +68,7 @@ public class UserTypeServiceImpl implements UserTypeService {
 
         try {
 
-            boolean isValidUserTypeName = isValidToInsertUserTypeName(userType);
-
-            if (!isValidUserTypeName) {
+            if (!isValidToInsertUserTypeName(userType)) {
                 CodeDescError errorConstraintUserTypeNameUnique = new CodeDescError(
                         ErrorEnum.ERR_USER_TYPE_NM_UNIQUE.getCode(), ErrorEnum.ERR_USER_TYPE_NM_UNIQUE.getDesc());
                 details.add(errorConstraintUserTypeNameUnique);
