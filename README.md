@@ -29,3 +29,30 @@ This is a user application that build using spring boot framework, spring valida
 1. Open postman application
 2. Import UserAppCollectionDoc.postman_collection.json
 3. Start test the REST API service
+
+### Run Unit Test for the Application
+
+1. Open command prompt in root application folder
+2. Run below command
+```sh
+    gradle test --info
+```
+3. You can see the result in the command prompt screen
+
+### Run Integration Test for the Application
+
+1. Open command prompt in root application folder
+2. Run below command
+```sh
+    gradle integrationTest --info
+```
+3. You can see the result in the command prompt screen
+
+### Run Unit Test and Integration Test for the Application
+
+1. Open command prompt in root application folder
+2. Run below command
+```sh
+    gradle integrationTest test --info
+```
+3. You can see the result in the command prompt screen
