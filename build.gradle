@@ -11,10 +11,7 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
-    maven {
-        url = 'https://repo.maven.apache.org/maven2'
-    }
+    mavenCentral()
 }
 
 dependencies {
@@ -28,7 +25,9 @@ dependencies {
     runtimeOnly 'org.springframework.boot:spring-boot-devtools:2.2.2.RELEASE'
     runtimeOnly 'com.h2database:h2:1.4.200'
     runtimeOnly 'mysql:mysql-connector-java:8.0.18'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.2.2.RELEASE'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
 }
 
 group = 'com.wirecard'
@@ -48,12 +47,13 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-sourceSets {
-    integrationTest {
-        java {
-            compileClasspath += main.output + test.output
-            runtimeClasspath += main.output + test.output
-            srcDir file('src/test/java/com/wirecard/userapp/user')
-        }
-    }
+task integrationTest(type: Test) {
+    description = 'Runs the integration tests.'
+    group = 'verification'
+    useJUnitPlatform()
+    outputs.upToDateWhen { false }
+    mustRunAfter test
 }
+
+check.dependsOn integrationTest
+
